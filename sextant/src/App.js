@@ -6,11 +6,18 @@ import Axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 function App() {
-  const [IPV4, setIPV4] = useState("")
+  const [IPV4, setIPV4] = useState(<></>)
     const fetchData = () => {
+        let elem = []
         Axios.get("https://api.ipify.org").then((response) => {
-            setIPV4(response.data)
-            console.log(response)
+            elem.push("IPV4: " + response.data)
+            Axios.get("https://api64.ipify.org?format=json").then((response) => {
+            elem.push("IPV6: " + response.data.ip)
+            const elements = elem.map((element) =>{
+              return (<p>{element}</p>)     
+            })
+            setIPV4(elements)
+        })
         })
     } 
     useEffect(() => {
