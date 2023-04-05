@@ -1,8 +1,11 @@
 import React from 'react'
-
-const Exhibit = () => {
+import './Exhibit.css'
+const Exhibit = (props) => {
   return (
-    <div>Exhibit</div>
+    <div className='exhibit'>
+        <h2>{props.title}</h2>
+        {props.children}
+    </div>
   )
 }
 
